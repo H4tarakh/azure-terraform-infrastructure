@@ -6,7 +6,7 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.location
   resource_group_name = var.rg_name
   address_space       = ["10.0.0.0/16"]
-  tags = var.tags
+  tags                = var.tags
 }
 
 # -------------------------
@@ -26,7 +26,7 @@ resource "azurerm_network_security_group" "nsg" {
   name                = "nsg-demo"
   location            = var.location
   resource_group_name = var.rg_name
-  tags = var.tags
+  tags                = var.tags
 }
 
 # -------------------------
@@ -55,7 +55,7 @@ resource "azurerm_public_ip" "pip" {
   resource_group_name = var.rg_name
   allocation_method   = "Static"
   sku                 = "Standard"
-  tags = var.tags
+  tags                = var.tags
 }
 
 # -------------------------

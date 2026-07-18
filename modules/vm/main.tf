@@ -3,7 +3,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = var.rg_name
   location            = var.location
   size                = var.vm_size
-  tags = var.tags
+  tags                = var.tags
 
   admin_username = var.admin_username
 

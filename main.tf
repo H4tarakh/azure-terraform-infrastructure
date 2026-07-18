@@ -8,7 +8,7 @@ module "resource_group" {
 }
 
 module "network" {
-  source   = "./modules/network"
+  source = "./modules/network"
 
   rg_name  = module.resource_group.name
   location = module.resource_group.location
@@ -26,7 +26,7 @@ module "vm" {
   vm_size        = var.vm_size
   admin_username = var.admin_username
   public_key     = var.public_key
-  tags = var.tags
+  tags           = var.tags
 }
 
 module "identity" {
@@ -35,7 +35,7 @@ module "identity" {
   rg_name       = module.resource_group.name
   location      = module.resource_group.location
   identity_name = var.identity_name
-  tags = var.tags
+  tags          = var.tags
 }
 
 module "rbac" {
