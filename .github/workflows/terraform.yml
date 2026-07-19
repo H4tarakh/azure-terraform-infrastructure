@@ -19,13 +19,14 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
-      TF_VAR_rg_name: ${{ vars.TF_VAR_rg_name }}
-      TF_VAR_location: ${{ vars.TF_VAR_location }}
-      TF_VAR_vm_size: ${{ vars.TF_VAR_vm_size }}
-      TF_VAR_admin_username: ${{ vars.TF_VAR_admin_username }}
-      TF_VAR_identity_name: ${{ vars.TF_VAR_identity_name }}
-      TF_VAR_role_definition_name: ${{ vars.TF_VAR_role_definition_name }}
-      TF_VAR_storage_account_name: ${{ vars.TF_VAR_storage_account_name }}
+      TF_VAR_location: ${{ vars.TF_VAR_LOCATION }}
+      TF_VAR_rg_name: ${{ vars.TF_VAR_RG_NAME }}
+      TF_VAR_vm_size: ${{ vars.TF_VAR_VM_SIZE }}
+      TF_VAR_admin_username: ${{ vars.TF_VAR_ADMIN_USERNAME }}
+      TF_VAR_public_key: ${{ vars.TF_VAR_PUBLIC_KEY }}
+      TF_VAR_identity_name: ${{ vars.TF_VAR_IDENTITY_NAME }}
+      TF_VAR_role_definition_name: ${{ vars.TF_VAR_ROLE_DEFINITION_NAME }}
+      TF_VAR_storage_account_name: ${{ vars.TF_VAR_STORAGE_ACCOUNT_NAME }}
 
     steps:
       - name: Checkout Repository
