@@ -2,6 +2,7 @@ variable "location" {
   description = "Azure Region"
   type        = string
 }
+# fghjk
 
 variable "rg_name" {
   description = "Resource Group Name"
