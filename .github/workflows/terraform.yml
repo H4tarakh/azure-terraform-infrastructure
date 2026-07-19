@@ -19,6 +19,14 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
+      TF_VAR_rg_name: ${{ vars.TF_VAR_rg_name }}
+      TF_VAR_location: ${{ vars.TF_VAR_location }}
+      TF_VAR_vm_size: ${{ vars.TF_VAR_vm_size }}
+      TF_VAR_admin_username: ${{ vars.TF_VAR_admin_username }}
+      TF_VAR_identity_name: ${{ vars.TF_VAR_identity_name }}
+      TF_VAR_role_definition_name: ${{ vars.TF_VAR_role_definition_name }}
+      TF_VAR_storage_account_name: ${{ vars.TF_VAR_storage_account_name }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
