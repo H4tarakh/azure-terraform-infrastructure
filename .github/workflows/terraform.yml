@@ -96,8 +96,8 @@ jobs:
         run: ls -la
 
       # Safety step
-      - name: Terraform Apply
-        run: |
+        environment:
+         name: production 
           echo "Terraform Apply is disabled for now."
           echo "Next phase will enable manual approval before deployment."
 
