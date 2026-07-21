@@ -1,4 +1,4 @@
-name: Terraform CI
+name: Terraform CI/CD
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  terraform:
-    name: Terraform CI
+  plan:
+    name: Terraform Plan
     runs-on: ubuntu-latest
 
     env:
@@ -35,7 +35,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: v1.15.7
+          terraform_version: 1.12.2
 
       - name: Terraform Format Check
         run: terraform fmt -check -recursive
@@ -52,5 +52,54 @@ jobs:
       - name: Upload Terraform Plan
         uses: actions/upload-artifact@v4
         with:
-         name: terraform-plan
-         path: tfplan
+          name: terraform-plan
+          path: tfplan
+
+  apply:
+    name: Terraform Apply
+    needs: plan
+    runs-on: ubuntu-latest
+
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+      TF_VAR_location: ${{ vars.TF_VAR_LOCATION }}
+      TF_VAR_rg_name: ${{ vars.TF_VAR_RG_NAME }}
+      TF_VAR_vm_size: ${{ vars.TF_VAR_VM_SIZE }}
+      TF_VAR_admin_username: ${{ vars.TF_VAR_ADMIN_USERNAME }}
+      TF_VAR_public_key: ${{ vars.TF_VAR_PUBLIC_KEY }}
+      TF_VAR_identity_name: ${{ vars.TF_VAR_IDENTITY_NAME }}
+      TF_VAR_role_definition_name: ${{ vars.TF_VAR_ROLE_DEFINITION_NAME }}
+      TF_VAR_storage_account_name: ${{ vars.TF_VAR_STORAGE_ACCOUNT_NAME }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.12.2
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Download Terraform Plan
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan
+
+      - name: Verify Plan File
+        run: ls -la
+
+      # Safety step
+      - name: Terraform Apply
+        run: |
+          echo "Terraform Apply is disabled for now."
+          echo "Next phase will enable manual approval before deployment."
+
+      # Next phase we will replace the above with:
+      # terraform apply -auto-approve tfplan
