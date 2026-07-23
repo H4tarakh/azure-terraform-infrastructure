@@ -211,12 +211,238 @@ Some improvements planned for future versions include:
 
 ---
 
-## Author
+## Adding CI/CD, Docker, Docker Hub, GitHub Action
+
+# 🚀 End-to-End Azure DevOps Project using Terraform, GitHub Actions & Docker
+
+## 📌 Project Overview
+
+This project demonstrates an end-to-end DevOps CI/CD pipeline using **Terraform**, **GitHub Actions**, **Docker**, **Docker Hub**, and **Microsoft Azure**.
+
+The infrastructure is provisioned using Terraform, the application is containerized with Docker, CI/CD pipelines are built with GitHub Actions, and the application is deployed on an Azure Virtual Machine.
+
+---
+
+# 🏗️ Architecture
+
+```text
+                Developer
+                     │
+                  Git Push
+                     │
+                     ▼
+              GitHub Repository
+                     │
+      ┌──────────────┴──────────────┐
+      │                             │
+      ▼                             ▼
+ Terraform CI/CD              Docker CI
+      │                             │
+Terraform Plan                 Build Image
+Terraform Validate             Push Docker Hub
+      │                             │
+      └──────────────┬──────────────┘
+                     ▼
+                Azure Virtual Machine
+                     │
+                 Docker Engine
+                     │
+                     ▼
+             Containerized Web App
+                     │
+                     ▼
+                Live Website
+```
+
+---
+
+# 🛠️ Technologies Used
+
+- Microsoft Azure
+- Terraform
+- GitHub Actions
+- Docker
+- Docker Hub
+- Ubuntu 22.04
+- Git
+- HTML
+- Azure CLI
+- SSH
+
+---
+
+# 📂 Project Structure
+
+```text
+azure-terraform-infrastructure/
+│
+├── .github/
+│   └── workflows/
+│       ├── terraform.yml
+│       ├── docker.yml
+│       └── deploy.yml
+│
+├── app/
+│   ├── Dockerfile
+│   └── index.html
+│
+├── modules/
+│   ├── network/
+│   ├── compute/
+│   ├── storage/
+│   └── identity/
+│
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── provider.tf
+└── README.md
+```
+
+---
+
+# ⚙️ Features
+
+✅ Infrastructure as Code using Terraform
+
+✅ Modular Terraform Architecture
+
+✅ Azure Virtual Machine Deployment
+
+✅ Dockerized Web Application
+
+✅ GitHub Actions CI Pipeline
+
+✅ GitHub Actions CD Pipeline
+
+✅ Docker Hub Integration
+
+✅ SSH-based Deployment
+
+✅ Automated Infrastructure Validation
+
+✅ Automated Docker Image Build & Push
+
+---
+
+# 🚀 CI Pipeline
+
+Every push to the repository automatically performs:
+
+- Checkout Source Code
+- Terraform Format Check
+- Terraform Initialization
+- Terraform Validation
+- Terraform Plan
+- Docker Image Build
+- Docker Image Push to Docker Hub
+
+---
+
+# 🚀 CD Pipeline
+
+Deployment pipeline performs:
+
+- Connect to Azure VM
+- Pull Latest Docker Image
+- Stop Existing Container
+- Remove Existing Container
+- Deploy Latest Container
+- Start Web Application
+
+---
+
+# 🐳 Docker
+
+Build Image
+
+```bash
+docker build -t hariom-devops:v1 .
+```
+
+Run Container
+
+```bash
+docker run -d -p 80:80 hariom-devops:v1
+```
+
+Push Image
+
+```bash
+docker push h4tarakh/hariom-devops:v1
+```
+
+---
+
+# ☁️ Azure Resources
+
+- Resource Group
+- Virtual Network
+- Subnet
+- Network Security Group
+- Public IP
+- Network Interface
+- Linux Virtual Machine
+- Managed Identity
+- Storage Account
+
+---
+
+# 📸 Screenshots
+
+Add screenshots here after deployment.
+
+Example:
+
+```
+images/
+├── terraform-plan.png
+├── github-actions.png
+├── docker-hub.png
+├── azure-vm.png
+├── live-website.png
+```
+
+---
+
+# 🎯 Learning Outcomes
+
+This project demonstrates practical experience with:
+
+- Infrastructure as Code
+- Cloud Infrastructure Automation
+- CI/CD Pipelines
+- Docker Containerization
+- Azure Administration
+- GitHub Actions
+- Linux Administration
+- DevOps Best Practices
+
+---
+
+# 📈 Future Improvements
+
+- Kubernetes Deployment (AKS)
+- Azure Key Vault
+- Azure Application Gateway
+- Azure Monitor & Log Analytics
+- Terraform Remote Backend
+- SonarQube Integration
+- OWASP Dependency Check
+- Blue-Green Deployment
+- Rolling Updates
+
+---
+
+# 👨‍💻 Author
 
 **Hariom Tarakh**
 
-* GitHub: https://github.com/H4tarakh
+Cloud & DevOps Engineer
 
-Thank you for checking out this project. If you found it useful, feel free to star the repository or share your feedback.
+GitHub: https://github.com/H4tarakh
 
-## Author
+LinkedIn: [linkedin/hariom-tarakh](https://www.linkedin.com/in/hariom-tarakh/)
+
+---
+
